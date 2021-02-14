@@ -23,7 +23,7 @@ class DetailFactory extends Factory
     {
         $detail_type = ['App\Models\Product', 'App\Models\ProductCategory'];
         return [
-            'key' => $this->faker->name,
+            'key_id' => $this->faker->numberBetween(1, 10),
             'value' => $this->faker->name,
             'price' => $this->faker->numberBetween(10, 10000),
             'detailable_id' => $this->faker->numberBetween(1, 20),

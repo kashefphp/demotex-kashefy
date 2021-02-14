@@ -1,5 +1,7 @@
 <?php
 
+use Tymon\JWTAuth\Providers\LaravelServiceProvider;
+
 return [
 
     /*
@@ -39,7 +41,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-        \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        LaravelServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Application Service Providers...

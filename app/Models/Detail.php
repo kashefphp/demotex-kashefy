@@ -18,13 +18,20 @@ class Detail extends Model
         return $this->morphTo();
     }
 
-    public function getTypeAttribute()
+    public function details()
+    {
+        return $this->belongsTo(DetailName::class, 'key_id', 'id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeAttribute(): string
     {
         if ($this->detailable_type == 'App\Models\Product') {
             return 'محصول';
         }elseif ($this->detailable_type == 'App\Models\ProductCategory'){
             return 'دسته بندی';
         }
-
     }
 }
