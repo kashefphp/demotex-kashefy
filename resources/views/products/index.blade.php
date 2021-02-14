@@ -52,7 +52,7 @@
                                     <td>{{$product->id}}</td>
                                     <td>{{$product->slug}}</td>
                                     <td> {{$product->name}}</td>
-                                    <td> {{$product->category->name}}</td>
+                                    <td> {{$product->category->name ?? '_'}}</td>
                                     <td>
                                         {{$product->price}}
                                         <br>
