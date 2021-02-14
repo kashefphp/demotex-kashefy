@@ -35,13 +35,17 @@ class Product extends Model
     {
         $detail_price = 0;
         //        get price of product details
-        foreach ($this->detailss as $a) {
-            $detail_price += $a->price;
+        if (is_object($this->detailss)) {
+            foreach ($this->detailss as $a) {
+                $detail_price += $a->price;
+            }
         }
 
 //        get price of own category details
-        foreach ($this->category->details as $a) {
-            $detail_price += $a->price;
+        if (is_object($this->category)) {
+            foreach ($this->category->details as $a) {
+                $detail_price += $a->price;
+            }
         }
 
         return $detail_price;
