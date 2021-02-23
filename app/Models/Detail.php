@@ -11,7 +11,7 @@ class Detail extends Model
 
     protected $appends = ['type'];
 
-    protected $fillable = ['value', 'key', 'price', 'detailable_id', 'detailable_type'];
+    protected $fillable = ['value', 'key_id', 'price', 'detailable_id', 'detailable_type'];
 
     public function detailable()
     {

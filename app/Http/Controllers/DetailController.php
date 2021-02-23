@@ -66,7 +66,7 @@ class DetailController extends Controller
     public function store(DetailStoreRequest $request)
     {
         $detail = new Detail();
-        $detail->key = $request->key;
+        $detail->key_id = $request->key_id;
         $detail->value = $request->value;
         $detail->price = $request->price;
         $detail->detailable_id = $request->kind_id;
@@ -76,12 +76,12 @@ class DetailController extends Controller
             $detail->detailable_type = 'App\Models\ProductCategory';
         }
         $detail->save();
-        if ($detail) {
-            alert()->success('Success Message', 'باموفقیت ایجاد شد');
-        } else {
-            alert()->error('Error Message', 'خطا!');
-        }
-        return back();
+//        if ($detail) {
+//            alert()->success('Success Message', 'باموفقیت ایجاد شد');
+//        } else {
+//            alert()->error('Error Message', 'خطا!');
+//        }
+//        return back();
     }
 
 
@@ -107,7 +107,7 @@ class DetailController extends Controller
     {
         $validatedData = $request->validate([
             'kind' => ['required', 'string'],
-            'key' => ['required', 'string'],
+            'key_id' => ['required'],
             'price' => ['required'],
             'value' => ['required'],
             'kind_id' => ['required'],
@@ -125,12 +125,12 @@ class DetailController extends Controller
         unset($validatedData['kind']);
 
         $detail->update($validatedData);
-        if ($detail) {
-            alert()->success('Success Message', 'باموفقیت بروز شد');
-        } else {
-            alert()->error('Error Message', 'خطا!');
-        }
-        return back();
+//        if ($detail) {
+//            alert()->success('Success Message', 'باموفقیت بروز شد');
+//        } else {
+//            alert()->error('Error Message', 'خطا!');
+//        }
+//        return back();
 
     }
 

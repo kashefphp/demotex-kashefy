@@ -25,7 +25,7 @@ class DetailStoreRequest extends FormRequest
     {
         return [
             'kind' => ['required', 'string'],
-            'key' => ['required', 'string'],
+            'key_id' => ['required'],
             'price' => ['required'],
             'value' => ['required'],
             'kind_id' => ['required'],

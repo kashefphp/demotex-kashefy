@@ -13,9 +13,8 @@ use Tests\TestCase;
 
 class DetailTest extends TestCase
 {
-//    use
-//        RefreshDatabase;
-
+    use
+        RefreshDatabase;
 
 
     /**
@@ -25,46 +24,68 @@ class DetailTest extends TestCase
      */
     public function testCreateDetail()
     {
-        $d = new Detail([
-            'key' => 'key',
-            'value' => 'value',
-            'price' => 23,
-            'detailable_id' => 1,
-            'detailable_type' => 'App\Model\Product',
+        $this->withoutExceptionHandling();
+
+        $res = $this->post('/detail', [
+            'key_id' => 1,
+            'value' => 'value2',
+            'price' => 43,
+            'kind_id' => 1,
+            'kind' => 'product',
         ]);
+        $res->assertOk();
 
-        $this->assertEquals('key', $d->key);
+    }
 
+    public function testValueIsRequire()
+    {
+        $res = $this->post('/detail', [
+            'key_id' => 1,
+            'value' => '',
+            'price' => 43,
+            'kind_id' => 1,
+            'kind' => 'product',
+        ]);
+        $errors = session('errors');
+        $this->assertEquals($errors->get('value')[0], 'فیلد value الزامی است');
     }
 
     public function testSomeDetail()
     {
-        $this->seed();
-        $this->assertNotEquals(10, Detail::count());
+//        $this->seed();
+//        $this->assertNotEquals(10, Detail::count());
     }
 
-    public function testEditDetail()
+    public function testUpdateDetail()
     {
-        $detail = Detail::first();
+//        $this->withoutExceptionHandling();
+        $this->post('/detail', [
+            'key_id' => 1,
+            'value' => 'testval1',
+            'price' => 43,
+            'kind_id' => 1,
+            'kind' => 'product',
+        ]);
+        $res = Detail::first();
 
-        $detail->update([
-            'key'=>'key',
-            'value'=>'val',
-            'price'=> 250,
-            'detailable_id'=>1,
-            'detailable_type'=>'App\Models\ProductCategory',
+        $this->patch('/detail/' . $res->id, [
+            'key_id' => 1,
+            'value' => 'testval2',
+            'price' => 43,
+            'kind_id' => 1,
+            'kind' => 'product',
         ]);
 
-        $this->assertEquals('key', $detail->key);
+        $this->assertEquals('testval2', Detail::first()->value);
     }
 
     public function testDeleteDetail()
     {
-        $detail = Detail::first();
-
-        $detail->delete();
-
-        $this->assertDeleted($detail);
+//        $detail = Detail::first();
+//
+//        $detail->delete();
+//
+//        $this->assertDeleted($detail);
     }
 
 
