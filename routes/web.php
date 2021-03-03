@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     //    get list of product
     Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
 
     //    add relation to model binding
     Route::bind('product', function ($id) {

@@ -81,11 +81,20 @@ class DetailTest extends TestCase
 
     public function testDeleteDetail()
     {
-//        $detail = Detail::first();
-//
-//        $detail->delete();
-//
-//        $this->assertDeleted($detail);
+        $this->withoutExceptionHandling();
+        $this->post('/detail', [
+            'key_id' => 1,
+            'value' => 'testval1',
+            'price' => 43,
+            'kind_id' => 1,
+            'kind' => 'product',
+        ]);
+        $detail = Detail::first();
+        $this->assertCount(1, Detail::all());
+
+        $this->delete('/detail/'. $detail->id);
+        $this->assertCount(0, Detail::all());
+        $this->followingRedirects();
     }
 
 
